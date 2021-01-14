@@ -22,7 +22,7 @@
   // Make an HTTP POST Request
   async post(url, data) {
     
-      const response = fetch(url, {
+      const post = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -31,13 +31,13 @@
       })
       
 
-      const resData = await (await response).json()
+      const resData = await post.json()
       return resData
   }
 
    // Make an HTTP PUT Request
    async put(url, data) {
-      const response = await fetch(url, {
+      const update = await fetch(url, {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json'
@@ -45,25 +45,23 @@
         body: JSON.stringify(data)
       })
 
-      const resData = await response.json()
+      const resData = await update.json()
       return resData;
   }
 
   // Make an HTTP DELETE Request
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
+  async delete(url) {
+    const deleted =
+      await fetch(url, {
         method: 'DELETE',
         headers: {
           'Content-type': 'application/json'
         }
       })
-      .then(res => res.json())
-      .then(() => resolve('Resource Deleted...'))
-      .catch(err => reject(err));
-    });
+    
+      const resData = await 'Resource Deleted...'
+      return resData
   }
-
  }
 
  
